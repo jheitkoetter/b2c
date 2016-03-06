@@ -44,7 +44,7 @@ doc man: readme
 
 readme: b2c.1
 	@echo "README file for $(PRG) version $(VERSION)" >README
-	@echo "Copyright (c) 1991-2016 Joerg Heitkoetter. All rights reserved." >> README
+	@echo "Copyright (c) 1991-2016 Joerg Heitkoetter (joke). All rights reserved." >> README
 	@echo "" >> README
 	groff -man -Tascii b2c.1 | ul -t dumb | uniq >>README
 	cp README README.md

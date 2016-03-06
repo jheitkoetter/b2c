@@ -1,5 +1,5 @@
 /*
- *  b2c(1) -- Copyright (c) 1991-2016 Joerg Heitkoetter. All rights reserved.
+ *  b2c(1) -- Copyright (c) 1991-2016 Joerg Heitkoetter (joke). All rights reserved.
  *
  *  Send bugs, comments, and all the fish to joke@verizon.com
  *
@@ -189,6 +189,6 @@ usage (code)
 note ()
 {
   fprintf (stderr, "This is %s, version %s\n", program_name, program_version);
-  fprintf (stderr, "Copyright (c) 1991-2016 Joerg Heitkoetter. All rights reserved.\n");
+  fprintf (stderr, "Copyright (c) 1991-2016 Joerg Heitkoetter (joke). All rights reserved.\n");
   fprintf (stderr, "Send comments, bugs, and all the fish to joke@verizon.com\n");
 }
