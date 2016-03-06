@@ -1,7 +1,7 @@
 .\" $Id: b2c.1,v 2.1 1997/11/21 14:51:34 joke Rel $
-.ds ED Edition 2.2
-.ds UP January 2000
-.ds VE 2.2
+.ds ED Edition 2.3
+.ds UP March 2016
+.ds VE 2.3
 .\" -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 .TH B2C 1 "\*(UP\&" "Version \*(VE\&" "USER COMMANDS"
 .\" -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -227,6 +227,12 @@ Step 2. Write a simple application program like:
 .fi
 .TP
 Step 3. Enjoy!
+.TP
+Step 4. Quick reality check from 2016: /dev/audio still exists,
+but it is no longer possible to simply sent a sunaudio file using cat
+and have the device play it, unless you're under Solaris.
+
+So the two examples included are only here for archaelogical reasons.
 .\"
 .SH "SEE ALSO"
 .LP
@@ -243,9 +249,9 @@ manual.
 Copyright 
 .if t \(co 
 .if n (c)
-1991-2000 J\*(oe\&rg Heitk\*(oe\&tter. All rights reserved.
+1991-2016 J\*(oe\&rg Heitk\*(oe\&tter (joke). All rights reserved.
 .nf
-Send bugs, comments, and all the fish to <joke@de.uu.net>
+Send bugs, comments, and all the fish to <joke@verizon.com>
 .fi
 .\"
 .SH CREDITS
@@ -263,14 +269,12 @@ utility for more ideas on how to use
 .\"
 .SH AVAILABILITY
 .I b2c
-has been posted to
+has been posted in 1997 to
 .B alt.sources
 and should be available from your local
 .B alt.sources
-news archive. It is also available on the web via
-.B http://gnu.de.uu.net/b2c
-which is virtually the same as
-.B http://surf.de.uu.net/gnuland/b2c
+news archive. It is also available on GitHub
+.B http://github.com/jheitkoetter/b2c
 .LP
 This work is protected by the terms of the
 .SM GNU
@@ -295,4 +299,4 @@ that alloweed him to circumvent the
 using
 .BR mtools (1);
 which made exchanging data between theses systems `a doodle'.
-(Yeah, this really used to be a problem those days!)
+(Yeah, this really used to be a problem in those days!)

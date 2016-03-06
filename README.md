@@ -1,4 +1,5 @@
 README file for b2c version 2.3
+Copyright (c) 1991-2016 Joerg Heitkoetter. All rights reserved.
 
 B2C(1)                           USER COMMANDS                          B2C(1)
 
@@ -114,27 +115,34 @@ APPLICATION
 
        Step 3. Enjoy!
 
+       Step 4. Quick reality check from 2016: /dev/audio still exists,
+              but it is no longer possible to  simply  sent  a  sunaudio  file
+              using  cat  and  have  the  device  play it, unless you're under
+              Solaris.
+
+              So the two examples included are  only  here  for  archaelogical
+              reasons.
+
 SEE ALSO
        btoa(1), atob(1), mtools(1).
 
        The GNU recode manual.
 
 AUTHOR
-       Copyright (c) 1991-2000 Joerg Heitkoetter. All rights reserved.
-       Send bugs, comments, and all the fish to <joke@de.uu.net>
+       Copyright (c) 1991-2016 Joerg Heitkoetter (joke). All rights reserved.
+       Send bugs, comments, and all the fish to <joke@verizon.com>
 
 CREDITS
-       Thanks   for   thoughtful   comments   from    David    W.    Sanderson
-       (dws@ssec.wisc.edu),  who  made me believe that `-CDH options' would be
-       nice. And Fran,cois Pinard (pinard@iro.umontreal.ca) for  his  comments
+       Thanks    for    thoughtful    comments   from   David   W.   Sanderson
+       (dws@ssec.wisc.edu), who made me believe that `-CDH options'  would  be
+       nice.  And  Fran,cois Pinard (pinard@iro.umontreal.ca) for his comments
        on `spurious trailing blanks' in previous releases of b2c.  Look at his
        GNU recode utility for more ideas on how to use b2c.
 
 AVAILABILITY
-       b2c has been posted to alt.sources and should be  available  from  your
-       local  alt.sources  news  archive.  It is also available on the web via
-       http://gnu.de.uu.net/b2c   which   is    virtually    the    same    as
-       http://surf.de.uu.net/gnuland/b2c
+       b2c has been posted in 1997 to alt.sources and should be available from
+       your local alt.sources news archive. It is  also  available  on  GitHub
+       http://github.com/jheitkoetter/b2c
 
        This  work is protected by the terms of the GNU General Public License.
        Please refer to the COPYING file accompanying the sources of this soft-
@@ -145,7 +153,7 @@ FINAL NOTE
        diverse DOS versions to write formatter programs.  E.g. an  MSDOS  for-
        matter for an ATARI ST, that alloweed him to circumvent the Kermit-bot-
        tleneck, using mtools(1); which made  exchanging  data  between  theses
-       systems  `a  doodle'.   (Yeah,  this  really used to be a problem those
+       systems  `a  doodle'.  (Yeah, this really used to be a problem in those
        days!)
 
-Version 2.2                      January 2000                           B2C(1)
+Version 2.3                       March 2016                            B2C(1)
