@@ -1,0 +1,298 @@
+.\" $Id: b2c.1,v 2.1 1997/11/21 14:51:34 joke Rel $
+.ds ED Edition 2.2
+.ds UP January 2000
+.ds VE 2.2
+.\" -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+.TH B2C 1 "\*(UP\&" "Version \*(VE\&" "USER COMMANDS"
+.\" -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+.\"
+.\" -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+.\"     German umlauts
+.\" -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+.\"     usage: \*(ae\&
+.if t .ds ae ä
+.if n .ds ae ae
+.\"     usage: \*(oe\&
+.if t .ds oe ö
+.if n .ds oe oe
+.\"     usage: \*(ue\&
+.if t .ds ue ü
+.if n .ds ue ue
+.\"     usage: \*(Ae\&
+.if t .ds Ae Ä
+.if n .ds Ae Ae
+.\"     usage: \*(Oe\&
+.if t .ds Oe Ö
+.if n .ds Oe Oe
+.\"     usage: \*(Ue\&
+.if t .ds Ue Ü
+.if n .ds Ue Ue
+.\"     usage: \*(ss\&
+.if t .ds ss ß
+.if n .ds ss ss
+.\"
+.\"     usage: \*(cc\&
+.if t .ds cc ç
+.if n .ds cc ,c
+.\"
+.\" The TeX macros
+.if t .ds Bi B\s-2IB\s+2T\\h'-0.1667m'\\v'0.20v'E\\v'-0.20v'\\h'-0.125m'X
+.if n .ds Bi BibTeX
+.\"
+.if t .ds Sc S\s-2CRIBE\s+2
+.if n .ds Sc Scribe
+.\" \(*Sc\&
+.if t .ds Te T\\h'-0.1667m'\\v'0.20v'E\\v'-0.20v'\\h'-0.125m'X
+.if n .ds Te TeX
+.\" 
+.if t .ds La L\\h'-0.3334m'\\v'-0.10v'\s-2A\s+2\\v'+0.10v'\\h'-0.1667m'T\\h'-0.1667m'\\v'0.20v'E\\v'-0.20v'\\h'-0.125m'X
+.if n .ds La LaTeX
+.\" 
+.if t .ds Ja J\s-2AVA\s+2
+.if n .ds Ja Java
+.\" 
+.\" -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+.SH NAME
+b2c \- a binary to C file converter
+.\"
+.SH SYNOPSIS
+.I b2c
+.B [-hvCHO]
+.B [-c #columns] [-i identifier]
+.B [-t type]
+.B [-o file] [-D sizemacro] [-G guardmacro]
+.I file(s)
+.\"
+.SH DESCRIPTION
+.I b2c
+is a tool for generating
+.I C source chunks
+or
+.I C header files
+from
+.B binaries.
+.I b2c
+automagically generates complete \fIC header\fR files which can directly be
+included using the C pre-processors's 
+.I #include
+directive. (See the
+.SM APPLICATION
+section below.)
+By default
+.I b2c
+encodes it's output into hexadecimal constants, which
+can be changed if
+(See the following
+.SM OPTIONS
+section.)
+.\"
+.SH OPTIONS
+.I b2c
+recognizes the following options:
+.TP
+.B -C
+Use
+.I decimal
+encoding of output constants.
+.TP
+.B -H
+Use
+.I hexadecimal
+encoding of output constants.
+.TP
+.B -O
+Use
+.I octal
+encoding of output constants.
+.TP
+.B -c \fI#columns\fR
+The output routine's column counter (8 by default) is set to
+the number specified. Negative numbers are treated as No-Ops.
+.TP
+.B -h
+Produce a valid C header file, ready for inclusion.
+(See also the -G option.)
+.TP
+.B -i \fIidentifier\fR
+Overwrite the output's routine default identifier
+.B foo
+with
+.I identifier.
+(Should be a valid C identifier.)
+.TP
+.B -o \fIfile\fR
+The output is redirected to \fIfile\fR, instead of the default
+.I stdout.
+.TP
+.B -t \fItype\fR
+Overwrite the output's routine default type definition
+.B unsigned char
+with
+.I type.
+(Should be a valid C type.)
+.TP
+.B -v
+Prints the version number and a copyright note on
+.I stderr.
+.TP
+.B -D \fIsizemacro\fR
+Overwrite the output's routine default `size' macro
+.B FOOSIZ
+with
+.I sizemacro.
+(Should be a valid C pre-processor macro name.)
+.TP
+.B -G \fIguardmacro\fR
+Overwrite the output's routine default `guardian' macro
+.B _foo_h_
+with
+.I guardmacro.
+(Should be a valid C pre-processor macro name.)
+Specifying `-G' implies option `-h'.
+.\"
+.SH OPTION SUMMARY
+.TP
+To give no option at all is the same as to give the options
+-H -c 8 -D FOOSIZ -i foo -t 'unsigned char'
+.\"
+.SH EXAMPLE
+.LP
+Hence the following
+.I binary
+file `foobar' containing the 9 bytes: \\001 \- \\011. Now type:
+.TP
+	b2c -h foobar
+.TP
+which produces the following output:
+.LP
+.nf
+.DT
+.ft B
+	/* foobar */
+	#ifndef _foo_h_
+	#define _foo_h_
+
+	unsigned char foo [] = {
+		0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+		0x09
+	};
+
+	#define FOOSIZ	((sizeof(foo)/sizeof(unsigned char))
+
+	#endif	/* _foo_h_ */
+.ft R
+.fi
+.TP
+In more general terms:
+.LP
+.nf
+.DT
+.ft B
+	/* <filename> */
+	#ifndef <guard>
+	#define <guard>
+
+	<type> <identifier> [] = {
+		<binary data>
+	};
+
+	#define <macro>	((sizeof(<identifier>)/sizeof(<type>))
+
+	#endif	/* <guard> */
+.ft R
+.fi
+.\"
+.SH APPLICATION
+Step 1. Convert one of your favourite 
+.I audio
+files into a C definition, e.g.
+.TP
+	b2c -i laughter -D LAUGHSIZ -G _laugh_h_ -o laughter.h laughter.au
+.TP
+Step 2. Write a simple application program like:
+.LP
+.nf
+.DT
+.ft B
+	#include <stdio.h>
+	#include "laughter.h"
+
+	FILE* audio;
+
+	if ((audio = fopen ("/dev/audio", "w")) != NULL) {
+		fwrite (laughter, LAUGHSIZ, 1, audio);
+		fclose (audio);
+	}
+.ft R
+.fi
+.TP
+Step 3. Enjoy!
+.\"
+.SH "SEE ALSO"
+.LP
+.BR btoa (1),
+.BR atob (1),
+.BR mtools (1).
+.LP
+The
+.SM GNU
+.B recode
+manual.
+.\"
+.SH AUTHOR
+Copyright 
+.if t \(co 
+.if n (c)
+1991-2000 J\*(oe\&rg Heitk\*(oe\&tter. All rights reserved.
+.nf
+Send bugs, comments, and all the fish to <joke@de.uu.net>
+.fi
+.\"
+.SH CREDITS
+.LP
+Thanks for thoughtful comments from David W. Sanderson (dws@ssec.wisc.edu),
+who made me believe that `-CDH options' would be nice. And Fran\*(cc\&ois Pinard
+(pinard@iro.umontreal.ca) for his comments on `spurious trailing blanks'
+in previous releases of
+.I b2c.
+Look at his 
+.SM GNU
+.B recode
+utility for more ideas on how to use
+.I b2c.
+.\"
+.SH AVAILABILITY
+.I b2c
+has been posted to
+.B alt.sources
+and should be available from your local
+.B alt.sources
+news archive. It is also available on the web via
+.B http://gnu.de.uu.net/b2c
+which is virtually the same as
+.B http://surf.de.uu.net/gnuland/b2c
+.LP
+This work is protected by the terms of the
+.SM GNU
+General Public License. Please refer to the
+.SM COPYING
+file accompanying the sources of this software package for a lengthy, boring
+but, absolute complete description.
+.\"
+.SH FINAL NOTE
+.LP
+The author used 
+.I b2c
+(back in 1991) to convert disk boot sectors from diverse
+.SM DOS
+versions to write formatter programs.
+E.g. an
+.SM MSDOS
+formatter for an
+.SM ATARI ST,
+that alloweed him to circumvent the
+.IR Kermit -bottleneck,
+using
+.BR mtools (1);
+which made exchanging data between theses systems `a doodle'.
+(Yeah, this really used to be a problem those days!)
