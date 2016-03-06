@@ -1,2 +1,2 @@
-# gnuland
-Diverse hacks posted to comp.sources.misc 
+# b2c
+A trivial binary to C converter
