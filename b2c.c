@@ -1,7 +1,7 @@
 /*
- *  b2c(1) -- Copyright (c) 1991-2000 Joerg Heitkoetter. All rights reserved.
+ *  b2c(1) -- Copyright (c) 1991-2016 Joerg Heitkoetter. All rights reserved.
  *
- *  Send bugs, comments, and all the fish to joke@de.uu.net
+ *  Send bugs, comments, and all the fish to joke@verizon.com
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -29,8 +29,8 @@ static char *rcsid = "$Id: b2c.c,v 2.1 1997/11/21 14:51:34 joke Rel $";
 #define ROWSIZ	8
 
 char *program_name;
-char *program_version = "2.2";
-char *program_uri = "http://github.com/jheitkoetter/gnuland/b2c/";
+char *program_version = "2.3";
+char *program_uri = "https://github.com/jheitkoetter/gnuland/b2c/";
 
 int Hflag = 1;			/* hex encoding: default */
 int Cflag = 0;			/* decimal encoding */
@@ -189,6 +189,6 @@ usage (code)
 note ()
 {
   fprintf (stderr, "This is %s, version %s\n", program_name, program_version);
-  fprintf (stderr, "Copyright (c) 1991-2000 Joerg Heitkoetter. All rights reserved.\n");
-  fprintf (stderr, "Send comments, bugs, and all the fish to joke@de.uu.net\n");
+  fprintf (stderr, "Copyright (c) 1991-2016 Joerg Heitkoetter. All rights reserved.\n");
+  fprintf (stderr, "Send comments, bugs, and all the fish to joke@verizon.com\n");
 }
